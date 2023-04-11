@@ -1,23 +1,32 @@
-import { useEffect, useState } from 'react';
 import styles from './Posts.module.css';
+import { useEffect, useState } from 'react';
 import { BiEdit } from 'react-icons/bi';
 import { MdDeleteForever } from 'react-icons/md';
 import { Modal } from '../Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPostsAsync } from '../../actions/getPostsAction';
+import { Pagination } from '@mantine/core';
 
 export const Posts = () => {
+  const [currentPage, setCurrentPage] = useState(1);
   const [deleteIsOpen, setDeleteIsOpen] = useState(false);
   const [editIsOpen, setEditIsOpen] = useState(false);
   const posts = useSelector(state => state.posts.data);
+  const count = useSelector(state => state.posts.count);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPostsAsync());
-  }, [dispatch]);
+    dispatch(getPostsAsync(currentPage));
+  }, [dispatch, currentPage]);
 
   return (
     <section className={`container ${styles.posts}`}>
+      <Pagination
+        page={currentPage}
+        onChange={setCurrentPage}
+        style={{ margin: '0 auto' }}
+        total={count / 10}
+      />
       {deleteIsOpen && (
         <Modal type='delete' clickAction={() => setDeleteIsOpen(false)} />
       )}

@@ -5,6 +5,7 @@ const postsSlice = createSlice({
   name: 'posts',
   initialState: {
     data: [],
+    count: 0,
     isLoading: false,
     hasError: false
   },
@@ -15,7 +16,8 @@ const postsSlice = createSlice({
         state.hasError = false;
       })
       .addCase(getPostsAsync.fulfilled, (state, { payload }) => {
-        state.data.push(...payload.results);
+        state.data = payload.results;
+        state.count = payload.count;
         state.isLoading = false;
         state.hasError = false;
       })
