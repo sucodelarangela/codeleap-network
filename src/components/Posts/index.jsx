@@ -3,36 +3,18 @@ import styles from './Posts.module.css';
 import { BiEdit } from 'react-icons/bi';
 import { MdDeleteForever } from 'react-icons/md';
 import { Modal } from '../Modal';
-
-const posts = {
-  results: [
-    {
-      "id": 4352,
-      "username": "Rafael",
-      "created_datetime": "2023-04-11T12:41:34.852770Z",
-      "title": "sdfdsfdf",
-      "content": "asdassad"
-    },
-    {
-      "id": 4351,
-      "username": "Rafael",
-      "created_datetime": "2023-04-11T12:41:24.460481Z",
-      "title": "sdfsf",
-      "content": "adsasad"
-    },
-    {
-      "id": 4350,
-      "username": "guribeiro",
-      "created_datetime": "2023-04-11T12:41:23.378040Z",
-      "title": "title",
-      "content": "content"
-    },
-  ]
-};
+import { useDispatch, useSelector } from 'react-redux';
+import { getPostsAsync } from '../../actions/getPostsAction';
 
 export const Posts = () => {
   const [deleteIsOpen, setDeleteIsOpen] = useState(false);
   const [editIsOpen, setEditIsOpen] = useState(false);
+  const posts = useSelector(state => state.posts.data);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPostsAsync());
+  }, [dispatch]);
 
   return (
     <section className={`container ${styles.posts}`}>
@@ -42,7 +24,7 @@ export const Posts = () => {
       {editIsOpen && (
         <Modal type='edit' clickAction={() => setEditIsOpen(false)} />
       )}
-      {posts && posts.results.map(post => (
+      {posts && posts.map(post => (
         <div key={post.id} className={styles.card}>
           <div className={styles.card_title}>
             <h2>{post.title}</h2>
