@@ -1,9 +1,15 @@
-header {
+.header {
   background-color: var(--blue);
 }
 
-h1 {
+.header div {
   color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header h1 {
   font-size: 22px;
   font-weight: 700;
   padding: 27px 0;

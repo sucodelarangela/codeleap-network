@@ -1,9 +1,12 @@
 import styles from './styles.module.css';
 
-export const Header = () => {
+export const Header = ({ user }) => {
   return (
     <header className={styles.header}>
-      <h1 className={`container ${styles.h1}`}>CodeLeap Network</h1>
+      <div className='container'>
+        <h1>CodeLeap Network</h1>
+        <h4>Welcome, {user}</h4>
+      </div>
     </header>
   );
 };

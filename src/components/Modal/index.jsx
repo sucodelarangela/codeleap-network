@@ -1,11 +1,19 @@
 import styles from './Modal.module.css';
 import { Button } from '../Form/Button/index';
 
-export const Modal = ({ type, clickAction }) => {
+export const Modal = ({ type, clickAction, setUser }) => {
+  // ENTER DIALOG: Saving username on localStorage and React state through FormData
+  const handleEnter = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    setUser(formData.get('username'));
+    localStorage.setItem('user', formData.get('username'));
+  };
 
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
+        {/* Conditionally render a different dialog structure according to user actions */}
         {type === 'delete' ? (
           <>
             <h2 className="title">Are you sure you want to delete this item?</h2>
@@ -25,6 +33,13 @@ export const Modal = ({ type, clickAction }) => {
               <Button action='cancel' clickAction={clickAction}>Cancel</Button>
               <Button type='submit' action='save'>Save</Button>
             </div>
+          </form>
+        ) : type === 'user' ? (
+          <form onSubmit={handleEnter}>
+            <legend className='title'>Welcome to CodeLeap network!</legend>
+            <label htmlFor="username" className='label'>Please enter your username</label>
+            <input id="username" name="username" type="text" placeholder="John Doe" className='input' />
+            <Button type='submit' action='submit'>Enter</Button>
           </form>
         ) : ''}
       </div>
