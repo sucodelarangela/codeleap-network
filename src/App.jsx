@@ -16,7 +16,7 @@ function App() {
         <Modal type='delete' />
       )}
       {editIsOpen && (
-        <Modal type='edit' clickAction={() => dispatch(setEdit(false))} />
+        <Modal type='edit' />
       )}
       {/* If there's a username, then load Home component */}
       {user ? <Home /> : <Modal type='user' />}

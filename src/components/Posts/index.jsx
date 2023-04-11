@@ -5,7 +5,7 @@ import { MdDeleteForever } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPostsAsync } from '../../actions/getPostsAction';
 import { Pagination } from '@mantine/core';
-import { setDelete, setEdit, setId } from '../../redux/Modal';
+import { setDelete, setEdit, setId, setTitle, setContent } from '../../redux/Modal';
 
 export const Posts = () => {
   // Username from Redux state
@@ -27,6 +27,13 @@ export const Posts = () => {
     dispatch(setId(id));
   };
 
+  const handleEditData = (post) => {
+    dispatch(setEdit(true));
+    dispatch(setId(post.id));
+    dispatch(setTitle(post.title));
+    dispatch(setContent(post.content));
+  };
+
   return (
     <section className={`container ${styles.posts}`}>
       <Pagination
@@ -34,7 +41,7 @@ export const Posts = () => {
         page={currentPage}
         onChange={setCurrentPage}
         className={styles.pagination}
-        total={count / 10}
+        total={Math.ceil(count / 10)}
       />
       {posts && posts.map(post => (
         <div key={post.id} className={styles.card}>
@@ -43,7 +50,7 @@ export const Posts = () => {
             {post.username === user && (
               <div className={styles.card_actions}>
                 <MdDeleteForever size={32} onClick={() => handleDeleteData(post.id)} />
-                <BiEdit size={32} onClick={() => dispatch(setEdit(true))} />
+                <BiEdit size={32} onClick={() => handleEditData(post)} />
               </div>
             )}
           </div>

@@ -25,6 +25,7 @@ export const Form = () => {
     };
     dispatch(postPostsAsync(newPost));
     dispatch(getPostsAsync(1));
+    setPost({ title: '', content: '' });
   };
 
   return (

@@ -13,6 +13,13 @@ const postsService = {
   delete: async (id) => {
     const response = await api.delete(`${id}/`);
     return response.data;
+  },
+  patch: async (post) => {
+    const response = await api.patch(`${post.id}/`, {
+      "title": post.title,
+      "content": post.content
+    });
+    return response.data;
   }
 };
 

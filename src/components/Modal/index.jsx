@@ -2,15 +2,18 @@ import styles from './Modal.module.css';
 import { Button } from '../Form/Button/index';
 import { setUser } from '../../redux/User';
 import { useDispatch, useSelector } from 'react-redux';
-import { setId, setDelete, setEdit } from '../../redux/Modal';
+import { setId, setDelete, setEdit, setTitle, setContent } from '../../redux/Modal';
 import { useEffect } from 'react';
 import { deletePostAsync } from '../../actions/deletePostAction';
 import { getPostsAsync } from '../../actions/getPostsAction';
+import { patchPostAsync } from '../../actions/patchPostAction';
 
-export const Modal = ({ type, clickAction }) => {
+export const Modal = ({ type }) => {
   // Using dispatch from Redux
   const dispatch = useDispatch();
   const postId = useSelector(state => state.modal.id);
+  const postTitle = useSelector(state => state.modal.title);
+  const postContent = useSelector(state => state.modal.content);
 
   // ENTER DIALOG: Saving username on localStorage and React state through FormData
   const handleEnter = (e) => {
@@ -44,6 +47,23 @@ export const Modal = ({ type, clickAction }) => {
       });
   };
 
+  // updating a post
+  const handleUpdate = (e) => {
+    e.preventDefault();
+
+    const post = {
+      id: postId,
+      title: postTitle,
+      content: postContent
+    };
+
+    dispatch(patchPostAsync(post))
+      .then(() => {
+        dispatch(getPostsAsync(1));
+        dispatch(setEdit(false));
+      });
+  };
+
   return (
     <>
       <div className={styles.overlay} onClick={() => {
@@ -62,14 +82,14 @@ export const Modal = ({ type, clickAction }) => {
             </div>
           </>
         ) : type === 'edit' ? (
-          <form>
+          <form onSubmit={handleUpdate}>
             <legend className='title'>Edit item</legend>
             <label htmlFor="title" className='label'>Title</label>
-            <input id="title" name="title" type="text" placeholder="Hello world" className='input' />
+            <input id="title" name="title" type="text" value={postTitle} onChange={(e) => dispatch(setTitle(e.target.value))} className='input' />
             <label htmlFor="content" className='label'>Content</label>
-            <textarea name="content" id="content" placeholder="Content here" className='input'></textarea>
+            <textarea name="content" id="content" value={postContent} onChange={(e) => dispatch(setContent(e.target.value))} className='input'></textarea>
             <div className={styles.actions}>
-              <Button action='cancel' clickAction={clickAction}>Cancel</Button>
+              <Button type='button' action='cancel' clickAction={() => dispatch(setEdit(false))}>Cancel</Button>
               <Button type='submit' action='save'>Save</Button>
             </div>
           </form>
