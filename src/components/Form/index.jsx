@@ -23,7 +23,6 @@ export const Form = () => {
       title: post.title,
       content: post.content
     };
-    console.log(newPost);
     dispatch(postPostsAsync(newPost));
     dispatch(getPostsAsync(1));
   };

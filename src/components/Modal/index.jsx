@@ -1,13 +1,16 @@
 import styles from './Modal.module.css';
 import { Button } from '../Form/Button/index';
 import { setUser } from '../../redux/User';
-import { useDispatch } from 'react-redux';
-import { setDelete, setEdit } from '../../redux/Modal';
+import { useDispatch, useSelector } from 'react-redux';
+import { setId, setDelete, setEdit } from '../../redux/Modal';
 import { useEffect } from 'react';
+import { deletePostAsync } from '../../actions/deletePostAction';
+import { getPostsAsync } from '../../actions/getPostsAction';
 
 export const Modal = ({ type, clickAction }) => {
   // Using dispatch from Redux
   const dispatch = useDispatch();
+  const postId = useSelector(state => state.modal.id);
 
   // ENTER DIALOG: Saving username on localStorage and React state through FormData
   const handleEnter = (e) => {
@@ -18,8 +21,10 @@ export const Modal = ({ type, clickAction }) => {
     localStorage.setItem('user', formData.get('username'));
   };
 
+  // Close dialog with ESC key
   function handleEscapeKey(event) {
     if (event.code === 'Escape') {
+      dispatch(setId(0));
       dispatch(setDelete(false));
       dispatch(setEdit(false));
     }
@@ -30,9 +35,19 @@ export const Modal = ({ type, clickAction }) => {
     return () => document.removeEventListener('keydown', handleEscapeKey);
   }, []);
 
+  // deleting a post
+  const handleDelete = () => {
+    dispatch(deletePostAsync(postId))
+      .then(() => {
+        dispatch(getPostsAsync(1));
+        dispatch(setDelete(false));
+      });
+  };
+
   return (
     <>
       <div className={styles.overlay} onClick={() => {
+        dispatch(setId(0));
         dispatch(setDelete(false));
         dispatch(setEdit(false));
       }}></div>
@@ -42,8 +57,8 @@ export const Modal = ({ type, clickAction }) => {
           <>
             <h2 className="title">Are you sure you want to delete this item?</h2>
             <div className={styles.actions}>
-              <Button action='cancel' clickAction={clickAction}>Cancel</Button>
-              <Button action='delete'>Delete</Button>
+              <Button action='cancel' clickAction={() => dispatch(setDelete(false))}>Cancel</Button>
+              <Button action='delete' clickAction={handleDelete}>Delete</Button>
             </div>
           </>
         ) : type === 'edit' ? (

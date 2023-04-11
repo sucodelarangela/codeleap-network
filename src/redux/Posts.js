@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getPostsAsync } from "../actions/getPostsAction";
 import { postPostsAsync } from "../actions/postPostAction";
+import { deletePostAsync } from "../actions/deletePostAction";
 
 const postsSlice = createSlice({
   name: 'posts',
@@ -15,6 +16,10 @@ const postsSlice = createSlice({
         state.count = payload.count;
       })
       .addCase(postPostsAsync.fulfilled, (state, { payload }) => {
+        state.data = payload.results;
+        state.count = payload.count;
+      })
+      .addCase(deletePostAsync.fulfilled, (state, { payload }) => {
         state.data = payload.results;
         state.count = payload.count;
       });
