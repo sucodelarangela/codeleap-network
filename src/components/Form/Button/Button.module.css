@@ -30,3 +30,8 @@
   background-color: var(--green);
   color: var(--white);
 }
+
+.btn.submit:disabled {
+  background-color: var(--light-grey);
+  cursor: not-allowed;
+}
