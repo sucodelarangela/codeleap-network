@@ -14,8 +14,9 @@
   --black: #000;
   --blue: #7695ec;
   --green: #47b960;
+  --dark-grey: #777777;
   --light-grey: #999999;
-  --overlay: #777777;
+  --overlay: rgba(119, 119, 119, 0.8);
   --red: #ff5151;
   --white: #fff;
 }

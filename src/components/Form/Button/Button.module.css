@@ -1,7 +1,8 @@
 .btn {
-  background-color: var(--blue);
+  background-color: transparent;
+  border: 1px solid var(--light-grey);
   border-radius: 8px;
-  color: var(--white);
+  color: var(--black);
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -10,4 +11,22 @@
   margin-left: auto;
   padding: 8px 0;
   width: 120px;
+}
+
+.btn.submit {
+  border: none;
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.btn.delete {
+  border: none;
+  background-color: var(--red);
+  color: var(--white);
+}
+
+.btn.save {
+  border: none;
+  background-color: var(--green);
+  color: var(--white);
 }

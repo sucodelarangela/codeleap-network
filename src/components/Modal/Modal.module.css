@@ -1,0 +1,30 @@
+.overlay {
+  background-color: var(--overlay);
+  inset: 0;
+  position: absolute;
+}
+
+.modal {
+  background-color: var(--white);
+  border-radius: 16px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 24px;
+  position: absolute;
+  width: 80%;
+}
+
+.modal h2 {
+  padding-bottom: 40px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.actions button {
+  margin: unset;
+}

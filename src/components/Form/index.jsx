@@ -11,7 +11,7 @@ export const Form = () => {
           <input id="title" name="title" type="text" placeholder="Hello world" className='input' />
           <label htmlFor="content" className='label'>Content</label>
           <textarea name="content" id="content" placeholder="Content here" className='input'></textarea>
-          <Button type='submit' action=''>Create</Button>
+          <Button type='submit' action='submit'>Create</Button>
         </fieldset>
       </form>
     </section>
