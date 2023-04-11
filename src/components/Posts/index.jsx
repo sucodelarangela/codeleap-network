@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPostsAsync } from '../../actions/getPostsAction';
 import { Pagination } from '@mantine/core';
 import { setDelete, setEdit, setId, setTitle, setContent } from '../../redux/Modal';
+import { timeSince } from '../../utils/timeSince';
 
 export const Posts = () => {
   // Username from Redux state
@@ -22,11 +23,13 @@ export const Posts = () => {
     dispatch(getPostsAsync(currentPage));
   }, [dispatch, currentPage]);
 
+  // Opening delete dialog and saving the post id with Redux
   const handleDeleteData = (id) => {
     dispatch(setDelete(true));
     dispatch(setId(id));
   };
 
+  // Opening edit dialog and saving post info with Redux
   const handleEditData = (post) => {
     dispatch(setEdit(true));
     dispatch(setId(post.id));
@@ -56,7 +59,7 @@ export const Posts = () => {
           </div>
           <div className={styles.user}>
             <span>@{post.username}</span>
-            <span>{post.created_datetime.slice(0, 10)}</span>
+            <span>{timeSince(new Date(post.created_datetime))}</span>
           </div>
           <p>{post.content}</p>
         </div>
