@@ -1,0 +1,6 @@
+form {
+  border: 1px solid var(--light-grey);
+  border-radius: 16px;
+  margin: 24px 0;
+  padding: 24px;
+}

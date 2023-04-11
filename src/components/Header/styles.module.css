@@ -1,0 +1,11 @@
+header {
+  background-color: var(--blue);
+}
+
+h1 {
+  color: var(--white);
+  font-size: 22px;
+  font-weight: 700;
+  padding: 27px 0;
+  text-align: left;
+}

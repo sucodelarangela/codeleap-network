@@ -1,0 +1,38 @@
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card h2 {
+  border-radius: 16px 16px 0 0;
+  color: var(--white);
+  background-color: var(--blue);
+  padding: 24px;
+}
+
+.card div {
+  border: 1px solid var(--light-grey);
+  border-style: none solid none solid;
+  padding: 24px;
+}
+
+.card p {
+  border: 1px solid var(--light-grey);
+  border-style: none solid solid solid;
+  border-radius: 0 0 16px 16px;
+  padding: 0 24px 24px;
+}
+
+.card div {
+  color: var(--overlay);
+  font-size: 18px;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 16px;
+}
+
+.card div span:first-child {
+  font-weight: 700;
+}
