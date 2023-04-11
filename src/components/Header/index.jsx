@@ -1,6 +1,9 @@
+import { useSelector } from 'react-redux';
 import styles from './styles.module.css';
 
-export const Header = ({ user }) => {
+export const Header = () => {
+  const user = useSelector(state => state.user);
+
   return (
     <header className={styles.header}>
       <div className='container'>

@@ -1,12 +1,18 @@
 import styles from './Modal.module.css';
 import { Button } from '../Form/Button/index';
+import { setUser } from '../../redux/User';
+import { useDispatch } from 'react-redux';
 
-export const Modal = ({ type, clickAction, setUser }) => {
+export const Modal = ({ type, clickAction }) => {
+  // Using dispatch from Redux
+  const dispatch = useDispatch();
+
   // ENTER DIALOG: Saving username on localStorage and React state through FormData
   const handleEnter = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    setUser(formData.get('username'));
+    // setUser(formData.get('username'));
+    dispatch(setUser(formData.get('username')));
     localStorage.setItem('user', formData.get('username'));
   };
 
