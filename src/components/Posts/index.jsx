@@ -2,19 +2,16 @@ import styles from './Posts.module.css';
 import { useEffect, useState } from 'react';
 import { BiEdit } from 'react-icons/bi';
 import { MdDeleteForever } from 'react-icons/md';
-import { Modal } from '../Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPostsAsync } from '../../actions/getPostsAction';
 import { Pagination } from '@mantine/core';
+import { setDelete, setEdit } from '../../redux/Modal';
 
 export const Posts = () => {
   // Username from Redux state
   const user = useSelector(state => state.user);
   // state for dealing with pagination
   const [currentPage, setCurrentPage] = useState(1);
-  // states for dealing with dialog's open and close actions
-  const [deleteIsOpen, setDeleteIsOpen] = useState(false);
-  const [editIsOpen, setEditIsOpen] = useState(false);
   // Selectors from Redux states
   const posts = useSelector(state => state.posts.data);
   const count = useSelector(state => state.posts.count);
@@ -34,20 +31,14 @@ export const Posts = () => {
         className={styles.pagination}
         total={count / 10}
       />
-      {deleteIsOpen && (
-        <Modal type='delete' clickAction={() => setDeleteIsOpen(false)} />
-      )}
-      {editIsOpen && (
-        <Modal type='edit' clickAction={() => setEditIsOpen(false)} />
-      )}
       {posts && posts.map(post => (
         <div key={post.id} className={styles.card}>
           <div className={styles.card_title}>
             <h2>{post.title}</h2>
             {post.username === user && (
               <div className={styles.card_actions}>
-                <MdDeleteForever size={32} onClick={() => setDeleteIsOpen(!deleteIsOpen)} />
-                <BiEdit size={32} onClick={() => setEditIsOpen(!editIsOpen)} />
+                <MdDeleteForever size={32} onClick={() => dispatch(setDelete(true))} />
+                <BiEdit size={32} onClick={() => dispatch(setEdit(true))} />
               </div>
             )}
           </div>

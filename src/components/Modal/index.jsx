@@ -2,6 +2,8 @@ import styles from './Modal.module.css';
 import { Button } from '../Form/Button/index';
 import { setUser } from '../../redux/User';
 import { useDispatch } from 'react-redux';
+import { setDelete, setEdit } from '../../redux/Modal';
+import { useEffect } from 'react';
 
 export const Modal = ({ type, clickAction }) => {
   // Using dispatch from Redux
@@ -16,8 +18,24 @@ export const Modal = ({ type, clickAction }) => {
     localStorage.setItem('user', formData.get('username'));
   };
 
+  function handleEscapeKey(event) {
+    if (event.code === 'Escape') {
+      dispatch(setDelete(false));
+      dispatch(setEdit(false));
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleEscapeKey);
+    return () => document.removeEventListener('keydown', handleEscapeKey);
+  }, []);
+
   return (
-    <div className={styles.overlay}>
+    <>
+      <div className={styles.overlay} onClick={() => {
+        dispatch(setDelete(false));
+        dispatch(setEdit(false));
+      }}></div>
       <div className={styles.modal}>
         {/* Conditionally render a different dialog structure according to user actions */}
         {type === 'delete' ? (
@@ -49,6 +67,6 @@ export const Modal = ({ type, clickAction }) => {
           </form>
         ) : ''}
       </div>
-    </div>
+    </>
   );
 };
