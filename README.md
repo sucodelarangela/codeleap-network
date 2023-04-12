@@ -52,11 +52,13 @@ Axios is simpler than `fetch api`, it requires less code to do the same thing. I
 
 ## ✅ Bonus points
 
-For the purpose of gaining bonus points, I have made the application responsive for mobile devices, which is something I find really important. Normally, I start coding with the `mobile-first` methodology, but since the Figma design was focused on desktop devices, I had to focus on the deliver.
+For the purpose of gaining bonus points, I have made the application **responsive for mobile devices**, which is something I find really important. Normally, I start coding with the `mobile-first` methodology, but since the Figma design was focused on desktop devices, I had to focus on the deliver.
 
-I have also created a simple login/logout system based on `localStorage` and **Redux**, and have implemented **pagination** on the bottom of the page, loading 10 posts per page.
+I have also created a simple **login/logout** system based on `localStorage` and **Redux**, and have implemented **pagination** on the bottom of the page, loading 10 posts per page.
 
 The **pagination** was developed with a components library called [**Mantine**](https://mantine.dev/). Using this component with Mantine saved me time to focus on other functionalities and UI. This library was not used in any other part of the application, since I was aiming to pixel-perfect development of the proposed design.
+
+Also, for better user experience, I have added a **Reload Feed** button so the user can update the list of posts and go back to page no.1.
 
 ## 💪 Difficulties overcome
 
