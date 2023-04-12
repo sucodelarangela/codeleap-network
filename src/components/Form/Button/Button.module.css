@@ -9,7 +9,7 @@
   font-size: 16px;
   font-weight: 700;
   margin-left: auto;
-  padding: 8px 0;
+  padding: 7px 0;
   width: 120px;
 }
 
@@ -19,26 +19,26 @@
 }
 
 .btn.submit {
-  border: none;
+  border: 1px solid;
   background-color: var(--blue);
   color: var(--white);
 }
 
 .btn.delete {
-  border: none;
+  border: 1px solid;
   background-color: var(--red);
   color: var(--white);
 }
 
 .btn.save {
-  border: none;
+  border: 1px solid;
   background-color: var(--green);
   color: var(--white);
 }
 
 .btn.submit:disabled {
   background-color: var(--light-grey);
-  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .btn.submit:hover {
