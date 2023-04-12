@@ -11,6 +11,8 @@ import { patchPostAsync } from '../../actions/patchPostAction';
 export const Modal = ({ type }) => {
   // Using dispatch from Redux
   const dispatch = useDispatch();
+  // state for dealing with pagination
+  const currentPage = useSelector(state => state.page);
   let [username, setUsername] = useState('');
   const postId = useSelector(state => state.modal.id);
   const postTitle = useSelector(state => state.modal.title);
@@ -43,7 +45,7 @@ export const Modal = ({ type }) => {
   const handleDelete = () => {
     dispatch(deletePostAsync(postId))
       .then(() => {
-        dispatch(getPostsAsync(1));
+        dispatch(getPostsAsync(currentPage));
         dispatch(setDelete(false));
       });
   };
@@ -60,7 +62,7 @@ export const Modal = ({ type }) => {
 
     dispatch(patchPostAsync(post))
       .then(() => {
-        dispatch(getPostsAsync(1));
+        dispatch(getPostsAsync(currentPage));
         dispatch(setEdit(false));
       });
   };

@@ -10,6 +10,8 @@ export const Form = () => {
   const dispatch = useDispatch();
   // Get username from Redux
   const username = useSelector(state => state.user);
+  // state for dealing with pagination
+  const currentPage = useSelector(state => state.page);
   // Use state to deal with button disabling verification and for post action
   const [post, setPost] = useState({
     title: '',
@@ -25,7 +27,7 @@ export const Form = () => {
     };
     dispatch(postPostsAsync(newPost))
       .then(() => {
-        dispatch(getPostsAsync(1));
+        dispatch(getPostsAsync(currentPage));
         setPost({ title: '', content: '' });
       });
   };

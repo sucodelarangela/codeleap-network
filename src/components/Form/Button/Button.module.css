@@ -13,6 +13,11 @@
   width: 120px;
 }
 
+.btn:hover {
+  background-color: var(--light-grey);
+  color: var(--white);
+}
+
 .btn.submit {
   border: none;
   background-color: var(--blue);
@@ -34,4 +39,27 @@
 .btn.submit:disabled {
   background-color: var(--light-grey);
   cursor: not-allowed;
+}
+
+.btn.submit:hover {
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+.btn.save:hover {
+  color: var(--green);
+  border-color: var(--green);
+}
+
+.btn.delete:hover {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.submit:hover,
+.delete:hover,
+.save:hover {
+  background-color: transparent;
+  border: 1px solid;
+  padding: 7px 0;
 }

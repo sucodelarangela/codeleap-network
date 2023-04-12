@@ -2,25 +2,32 @@ import styles from './Posts.module.css';
 import { useEffect, useState } from 'react';
 import { BiEdit } from 'react-icons/bi';
 import { MdDeleteForever } from 'react-icons/md';
+import { TbReload } from 'react-icons/tb';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPostsAsync } from '../../actions/getPostsAction';
 import { Pagination } from '@mantine/core';
 import { setDelete, setEdit, setId, setTitle, setContent } from '../../redux/Modal';
 import { timeSince } from '../../utils/timeSince';
+import { setPage } from '../../redux/Pagination';
+import { Button } from '../Form/Button';
 
 export const Posts = () => {
   // Username from Redux state
   const user = useSelector(state => state.user);
   // state for dealing with pagination
-  const [currentPage, setCurrentPage] = useState(1);
+  const page = useSelector(state => state.page);
+  const [currentPage, setCurrentPage] = useState(page);
   // Selectors from Redux states
   const posts = useSelector(state => state.posts.data);
   const count = useSelector(state => state.posts.count);
   const dispatch = useDispatch();
 
+  console.log(page, currentPage);
+
   // Reload posts every time page or dispatch changes
   useEffect(() => {
     dispatch(getPostsAsync(currentPage));
+    dispatch(setPage(currentPage));
     window.scrollTo(0, 0);
   }, [dispatch, currentPage]);
 
@@ -40,6 +47,7 @@ export const Posts = () => {
 
   return (
     <section className={`container ${styles.posts}`}>
+      <Button type='button' action='submit' clickAction={() => setCurrentPage(1)}><TbReload size={32} />Reload feed</Button>
       {posts && posts.map(post => (
         <div key={post.id} className={styles.card}>
           <div className={styles.card_title}>
@@ -60,6 +68,7 @@ export const Posts = () => {
       ))}
       <Pagination
         color='dark'
+        value={currentPage}
         page={currentPage}
         onChange={setCurrentPage}
         className={styles.pagination}
