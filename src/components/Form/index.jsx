@@ -18,6 +18,7 @@ export const Form = () => {
     content: ''
   });
 
+  // add new post to the API
   const handleSubmit = (e) => {
     e.preventDefault();
     const newPost = {
@@ -37,13 +38,6 @@ export const Form = () => {
     e.style.height = 'auto';
     e.style.height = e.scrollHeight + 'px';
   }
-
-  // useEffect(() => {
-  //   const textarea = document.querySelector('.code');
-  //   if (textarea) {
-  //     handleSize(textarea);
-  //   }
-  // }, [hlActive]);
 
   return (
     <section className="container">

@@ -9,11 +9,11 @@ import { getPostsAsync } from '../../actions/getPostsAction';
 import { patchPostAsync } from '../../actions/patchPostAction';
 
 export const Modal = ({ type }) => {
+  let [username, setUsername] = useState('');
   // Using dispatch from Redux
   const dispatch = useDispatch();
   // state for dealing with pagination
   const currentPage = useSelector(state => state.page);
-  let [username, setUsername] = useState('');
   const postId = useSelector(state => state.modal.id);
   const postTitle = useSelector(state => state.modal.title);
   const postContent = useSelector(state => state.modal.content);

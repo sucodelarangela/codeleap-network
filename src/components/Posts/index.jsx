@@ -3,12 +3,12 @@ import { useEffect, useState } from 'react';
 import { BiEdit } from 'react-icons/bi';
 import { MdDeleteForever } from 'react-icons/md';
 import { TbReload } from 'react-icons/tb';
+import { Pagination } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPostsAsync } from '../../actions/getPostsAction';
-import { Pagination } from '@mantine/core';
 import { setDelete, setEdit, setId, setTitle, setContent } from '../../redux/Modal';
-import { timeSince } from '../../utils/timeSince';
 import { setPage } from '../../redux/Pagination';
+import { timeSince } from '../../utils/timeSince';
 import { Button } from '../Form/Button';
 
 export const Posts = () => {
@@ -21,8 +21,6 @@ export const Posts = () => {
   const posts = useSelector(state => state.posts.data);
   const count = useSelector(state => state.posts.count);
   const dispatch = useDispatch();
-
-  console.log(page, currentPage);
 
   // Reload posts every time page or dispatch changes
   useEffect(() => {
