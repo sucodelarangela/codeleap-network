@@ -70,6 +70,7 @@ It was the first time I used **Redux** in a project. Previously I have developed
 
 These are things that I would have done if time was not a prime factor for this deliver:
 
+- Error treatment (that would be the most immediate action);
 - Convert all JavaScript to TypeScript for a more trustable code;
 - Use Sass or styled-components to try and improve styles.
 
