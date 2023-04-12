@@ -54,9 +54,11 @@ Axios is simpler than `fetch api`, it requires less code to do the same thing. I
 
 For the purpose of gaining bonus points, I have made the application **responsive for mobile devices**, which is something I find really important. Normally, I start coding with the `mobile-first` methodology, but since the Figma design was focused on desktop devices, I had to focus on the deliver.
 
-I have also created a simple **login/logout** system based on `localStorage` and **Redux**, and have implemented **pagination** on the bottom of the page, loading 10 posts per page.
+I have also created a simple **login/logout** system based on `localStorage` and **Redux**. Since authentication was not a requirement for this project, I did not invested any time on back-end authentication. Otherwise, I would have used Firebase as an option.
 
-The **pagination** was developed with a components library called [**Mantine**](https://mantine.dev/). Using this component with Mantine saved me time to focus on other functionalities and UI. This library was not used in any other part of the application, since I was aiming to pixel-perfect development of the proposed design.
+> If you wish to see a project with Firebase authentication, visit my [**CodeShare's repo**](https://github.com/sucodelarangela/codeshare)
+
+There is a **pagination** navigator on the bottom of the page, loading 10 posts per page. The **pagination** was developed with a components library called [**Mantine**](https://mantine.dev/). Using this component with Mantine saved me time to focus on other functionalities and UI. This library was not used in any other part of the application, since I was aiming to pixel-perfect development of the proposed design.
 
 Also, for better user experience, I have added a **Reload Feed** button so the user can update the list of posts and go back to page no.1.
 
@@ -68,7 +70,7 @@ It was the first time I used **Redux** in a project. Previously I have developed
 
 These are things that I would have done if time was not a prime factor for this deliver:
 
-- Convert all JavaScript to TypeScript for a mure trustable code;
+- Convert all JavaScript to TypeScript for a more trustable code;
 - Use Sass or styled-components to try and improve styles.
 
 Nevertheless, I believe I delivered a very well developed and responsive interface with all functionalities working fine, which is a great accomplishment when considering I have spent less than a day to finish the application.
