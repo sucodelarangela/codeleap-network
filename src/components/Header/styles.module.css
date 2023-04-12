@@ -15,3 +15,22 @@
   padding: 27px 0;
   text-align: left;
 }
+
+.header div > div {
+  flex-direction: column;
+}
+
+.header h4 {
+  text-align: end;
+}
+
+.header button {
+  color: var(--white);
+  cursor: pointer;
+  background: transparent;
+  transition: 0.3s;
+}
+
+.header button:hover {
+  color: var(--black);
+}

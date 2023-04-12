@@ -9,9 +9,14 @@
   border-radius: 16px 16px 0 0;
   color: var(--white);
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   background-color: var(--blue);
   padding: 24px;
+}
+
+.card_title h2 {
+  word-break: break-all;
 }
 
 .card_actions {
@@ -49,6 +54,7 @@
   border-style: none solid solid solid;
   border-radius: 0 0 16px 16px;
   padding: 0 24px 24px;
+  white-space: pre-wrap;
 }
 
 .pagination {
@@ -57,4 +63,17 @@
 
 .pagination button[data-active='true'] {
   background: var(--blue);
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 864px) {
+  .card_title {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .user {
+    flex-direction: column;
+    gap: 4px;
+  }
 }

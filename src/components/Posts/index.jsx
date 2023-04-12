@@ -21,6 +21,7 @@ export const Posts = () => {
   // Reload posts every time page or dispatch changes
   useEffect(() => {
     dispatch(getPostsAsync(currentPage));
+    window.scrollTo(0, 0);
   }, [dispatch, currentPage]);
 
   // Opening delete dialog and saving the post id with Redux
@@ -39,13 +40,6 @@ export const Posts = () => {
 
   return (
     <section className={`container ${styles.posts}`}>
-      <Pagination
-        color='dark'
-        page={currentPage}
-        onChange={setCurrentPage}
-        className={styles.pagination}
-        total={Math.ceil(count / 10)}
-      />
       {posts && posts.map(post => (
         <div key={post.id} className={styles.card}>
           <div className={styles.card_title}>
@@ -64,6 +58,14 @@ export const Posts = () => {
           <p>{post.content}</p>
         </div>
       ))}
+      <Pagination
+        color='dark'
+        page={currentPage}
+        onChange={setCurrentPage}
+        className={styles.pagination}
+        total={Math.ceil(count / 10)}
+        withControls={false}
+      />
     </section>
   );
 };

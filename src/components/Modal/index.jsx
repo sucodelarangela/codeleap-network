@@ -3,7 +3,7 @@ import { Button } from '../Form/Button/index';
 import { setUser } from '../../redux/User';
 import { useDispatch, useSelector } from 'react-redux';
 import { setId, setDelete, setEdit, setTitle, setContent } from '../../redux/Modal';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { deletePostAsync } from '../../actions/deletePostAction';
 import { getPostsAsync } from '../../actions/getPostsAction';
 import { patchPostAsync } from '../../actions/patchPostAction';
@@ -11,6 +11,7 @@ import { patchPostAsync } from '../../actions/patchPostAction';
 export const Modal = ({ type }) => {
   // Using dispatch from Redux
   const dispatch = useDispatch();
+  let [username, setUsername] = useState('');
   const postId = useSelector(state => state.modal.id);
   const postTitle = useSelector(state => state.modal.title);
   const postContent = useSelector(state => state.modal.content);
@@ -97,8 +98,16 @@ export const Modal = ({ type }) => {
           <form onSubmit={handleEnter}>
             <legend className='title'>Welcome to CodeLeap network!</legend>
             <label htmlFor="username" className='label'>Please enter your username</label>
-            <input id="username" name="username" type="text" placeholder="John Doe" className='input' />
-            <Button type='submit' action='submit'>Enter</Button>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              placeholder="John Doe"
+              className='input'
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <Button type='submit' action='submit' disabled={username === '' ? true : false}>Enter</Button>
           </form>
         ) : ''}
       </div>

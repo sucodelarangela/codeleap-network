@@ -28,6 +28,19 @@ export const Form = () => {
     setPost({ title: '', content: '' });
   };
 
+  // Handle size of textarea when writing long texts
+  function handleSize(e) {
+    e.style.height = 'auto';
+    e.style.height = e.scrollHeight + 'px';
+  }
+
+  // useEffect(() => {
+  //   const textarea = document.querySelector('.code');
+  //   if (textarea) {
+  //     handleSize(textarea);
+  //   }
+  // }, [hlActive]);
+
   return (
     <section className="container">
       <form onSubmit={handleSubmit} className={styles.legend}>
@@ -51,6 +64,7 @@ export const Form = () => {
             className='input'
             value={post.content}
             onChange={(e) => { setPost({ ...post, content: e.target.value }); }}
+            onInput={(e) => handleSize(e.target)}
           ></textarea>
           <Button type='submit' action='submit' disabled={
             post.title === '' || post.content === '' ? true : false
