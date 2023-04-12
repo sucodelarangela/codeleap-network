@@ -23,9 +23,11 @@ export const Form = () => {
       title: post.title,
       content: post.content
     };
-    dispatch(postPostsAsync(newPost));
-    dispatch(getPostsAsync(1));
-    setPost({ title: '', content: '' });
+    dispatch(postPostsAsync(newPost))
+      .then(() => {
+        dispatch(getPostsAsync(1));
+        setPost({ title: '', content: '' });
+      });
   };
 
   // Handle size of textarea when writing long texts
